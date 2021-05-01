@@ -1,78 +1,103 @@
+{
+    const convertedAmountElement = document.querySelector(".js-convertedAmount");
 
-let amountElement = document.querySelector(".js-amount");
-let fromCurrencyElement = document.querySelector(".js-fromCurrency");
-let toCurrencyElement = document.querySelector(".js-toCurrency");
-let convertedAmountElement = document.querySelector(".js-convertedAmount");
-let formElement = document.querySelector(".js-form");
-let resetButton = document.querySelector(".js-resetButton");
-
-
-fromCurrencyElement.addEventListener("input", () => {
-    if (fromCurrencyElement.value === toCurrencyElement.value) {
-        toCurrencyElement.value = "";
-    }
-});
-
-toCurrencyElement.addEventListener("input", () => {
-    if (toCurrencyElement.value === fromCurrencyElement.value) {
-        fromCurrencyElement.value = "";
-    }
-});
-
-formElement.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    let pound = 5.286;
-    let dollar = 3.795;
-    let euro = 4.556;
-    let zloty = 1.000;
+    const pound = 5.286;
+    const dollar = 3.795;
+    const euro = 4.556;
+    const zloty = 1.000;
 
 
-    let amount = Number(amountElement.value);
-    let fromCurrency = fromCurrencyElement.value;
-    let toCurrency = toCurrencyElement.value;
-    let primaryOutcome;
-    let finalOutcome;
+    const computePrimaryOutcome = (fromCurrency, amount) => {
+        switch (fromCurrency) {
 
+            case "GBP":
+                return amount * pound;
 
-    resetButton.addEventListener("click", () => {
-        convertedAmountElement.innerText = "";
-    });
+            case "USD":
+                return amount * dollar;
 
-    switch (fromCurrency) {
+            case "EUR":
+                return amount * euro;
 
-        case "GBP":
-            primaryOutcome = amount * pound;
-            break;
-        case "USD":
-            primaryOutcome = amount * dollar;
-            break;
-        case "EUR":
-            primaryOutcome = amount * euro;
-            break;
-        case "PLN":
-            primaryOutcome = amount * zloty;
-            break;
+            case "PLN":
+                return amount * zloty;
+        }
     }
 
 
-    switch (toCurrency) {
+    const computeFinalOutcome = (toCurrency, computePrimaryOutcome) => {
+        switch (toCurrency) {
 
-        case "GBP":
-            finalOutcome = primaryOutcome / pound;
-            break;
-        case "USD":
-            finalOutcome = primaryOutcome / dollar;
-            break;
-        case "EUR":
-            finalOutcome = primaryOutcome / euro;
-            break;
-        case "PLN":
-            finalOutcome = primaryOutcome / zloty;
-            break;
+            case "GBP":
+                return computePrimaryOutcome / pound;
+
+            case "USD":
+                return computePrimaryOutcome / dollar;
+
+            case "EUR":
+                return computePrimaryOutcome / euro;
+
+            case "PLN":
+                return computePrimaryOutcome / zloty;
+        }
     }
 
 
-    convertedAmountElement.innerText = `${amount.toFixed(3)} ${fromCurrency} = ${finalOutcome.toFixed(3)} ${toCurrency}`;
-});
+    const showConvertedAmount = (amount, fromCurrency, finalOutcome, toCurrency) => {
+        convertedAmountElement.innerText = `${amount.toFixed(3)} ${fromCurrency} = ${finalOutcome.toFixed(3)} ${toCurrency}`;
+    }
 
+
+    const preventCurrencyDuplicate = (basicCurrency, targetCurrency) => {
+        basicCurrency.addEventListener("input", () => {
+            if (basicCurrency.value === targetCurrency.value) {
+                targetCurrency.value = "";
+            }
+        });
+
+        targetCurrency.addEventListener("input", () => {
+            if (targetCurrency.value === basicCurrency.value) {
+                basicCurrency.value = "";
+            }
+        });
+    }
+
+
+    const resetAllContent = () => {
+        const resetButton = document.querySelector(".js-resetButton");
+        resetButton.addEventListener("click", () => {
+            convertedAmountElement.innerText = "";
+        });
+    }
+
+
+    const onFormSubmit = (event) => {
+        event.preventDefault();
+
+        const amountElement = document.querySelector(".js-amount");
+        const fromCurrencyElement = document.querySelector(".js-fromCurrency");
+        const toCurrencyElement = document.querySelector(".js-toCurrency");
+
+        const amount = Number(amountElement.value);
+        const fromCurrency = fromCurrencyElement.value;
+        const toCurrency = toCurrencyElement.value;
+
+        const primaryOutcome = computePrimaryOutcome(fromCurrency, amount);
+        const finalOutcome = computeFinalOutcome(toCurrency, primaryOutcome)
+
+        showConvertedAmount(amount, fromCurrency, finalOutcome, toCurrency);
+        preventCurrencyDuplicate(fromCurrencyElement, toCurrencyElement);
+    }
+
+
+    const init = () => {
+
+        const formElement = document.querySelector(".js-form");
+        formElement.addEventListener("submit", onFormSubmit);
+
+        resetAllContent();
+    }
+
+    init();
+    
+}
