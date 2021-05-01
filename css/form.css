@@ -2,8 +2,9 @@
     padding: 40px;
     border-radius: 5px;
     border: 1px solid #eee;
-    box-shadow: 0px 0px 10px #bbb;
+    box-shadow: 1px 1px 10px #000000a1;
     margin: 30px 0;
+    background-color: #fff;
 }
 
 .form__labelSubject {
@@ -38,7 +39,7 @@
 
 .form__button:hover {
     background-color: hsl(211, 100%, 56%);
-    box-shadow: 3px 3px 5px #bbb;
+    box-shadow: 1px 1px 10px #0000006e;
 }
 
 .form__button:active {
