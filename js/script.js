@@ -43,11 +43,6 @@
     }
 
 
-    const showConvertedAmount = (amount, fromCurrency, finalOutcome, toCurrency) => {
-        convertedAmountElement.innerText = `${amount.toFixed(3)} ${fromCurrency} = ${finalOutcome.toFixed(3)} ${toCurrency}`;
-    }
-
-
     const preventCurrencyDuplicate = (basicCurrency, targetCurrency) => {
         basicCurrency.addEventListener("input", () => {
             if (basicCurrency.value === targetCurrency.value) {
@@ -60,6 +55,11 @@
                 basicCurrency.value = "";
             }
         });
+    }
+
+
+    const showConvertedAmount = (amount, fromCurrency, finalOutcome, toCurrency) => {
+        convertedAmountElement.innerText = `${amount.toFixed(3)} ${fromCurrency} = ${finalOutcome.toFixed(3)} ${toCurrency}`;
     }
 
 
@@ -99,5 +99,5 @@
     }
 
     init();
-    
+
 }
