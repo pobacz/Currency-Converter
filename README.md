@@ -1,5 +1,5 @@
 # Currency Converter
-Basic application, where you can enter the volume and select required currency pair. You can choose between four currencies: GBP, EUR, USD, PLN. 
+Basic application, where you can enter the volume and select required currency pair. You can choose between four currencies: GBP, EUR, USD, PLN. App created for training purposes. 
 
 ## Demo
 [Currency Converter](https://pobacz.github.io/currency-converter/)
