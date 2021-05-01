@@ -1,4 +1,6 @@
 {
+    const fromCurrencyElement = document.querySelector(".js-fromCurrency");
+    const toCurrencyElement = document.querySelector(".js-toCurrency");
     const convertedAmountElement = document.querySelector(".js-convertedAmount");
 
     const pound = 5.286;
@@ -75,8 +77,6 @@
         event.preventDefault();
 
         const amountElement = document.querySelector(".js-amount");
-        const fromCurrencyElement = document.querySelector(".js-fromCurrency");
-        const toCurrencyElement = document.querySelector(".js-toCurrency");
 
         const amount = Number(amountElement.value);
         const fromCurrency = fromCurrencyElement.value;
@@ -86,12 +86,13 @@
         const finalOutcome = computeFinalOutcome(toCurrency, primaryOutcome)
 
         showConvertedAmount(amount, fromCurrency, finalOutcome, toCurrency);
-        preventCurrencyDuplicate(fromCurrencyElement, toCurrencyElement);
+
     }
 
 
     const init = () => {
 
+        preventCurrencyDuplicate(fromCurrencyElement, toCurrencyElement);
         const formElement = document.querySelector(".js-form");
         formElement.addEventListener("submit", onFormSubmit);
 
