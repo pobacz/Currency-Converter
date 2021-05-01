@@ -10,5 +10,5 @@ body {
     font-family: "Roboto", sans-serif;
     background-image: url("../images/backgroundCurrency.jpg");
     background-size: cover;
-    background-position: center bottom;
+    background-position: bottom;
 }
