@@ -19,13 +19,13 @@
     color: hsl(207, 7%, 25%);
 }
 
-.table__header {
+.table__cell--highlighted {
     background-color: #085399;
     color: #fff;
     font-weight: normal;
 }
 
-.table__header:hover {
+.table__cell--highlighted:hover {
     background-color: hsl(209, 90%, 40%);
 }
 
