@@ -17,7 +17,7 @@ Basic application, where you can enter the volume and select required currency p
 ## Technologies
 - HTML
 - CSS
-- JAVASCRIPT ES6
+- JAVASCRIPT ES6+
 - BEM
 
 ## Code sample
