@@ -44,10 +44,16 @@
         }
     }
 
+    const preventCurrencyDuplicate = (basicCurrency, targetCurrency) => {
+        basicCurrency.addEventListener("input", () => {
+            if (basicCurrency.value === targetCurrency.value) {
+                targetCurrency.value = "";
+            }
+        });
 
-   
+    }
 
-
+    
     const showConvertedAmount = (amount, fromCurrency, finalOutcome, toCurrency) => {
         convertedAmountElement.innerText = `${amount.toFixed(3)} ${fromCurrency} = ${finalOutcome.toFixed(3)} ${toCurrency}`;
     }
@@ -74,15 +80,14 @@
         const finalOutcome = computeFinalOutcome(toCurrency, primaryOutcome)
 
         showConvertedAmount(amount, fromCurrency, finalOutcome, toCurrency);
-
     }
 
 
     const init = () => {
 
         preventCurrencyDuplicate(fromCurrencyElement, toCurrencyElement);
+        preventCurrencyDuplicate(toCurrencyElement, fromCurrencyElement);
 
-          
         const formElement = document.querySelector(".js-form");
         formElement.addEventListener("submit", onFormSubmit);
         formElement.addEventListener("reset", resetAllContent);
