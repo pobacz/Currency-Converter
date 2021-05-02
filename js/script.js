@@ -89,6 +89,8 @@
 
         const formElement = document.querySelector(".js-form");
         formElement.addEventListener("submit", onFormSubmit);
+
+        // With the line below you have to click on Reset all twice
         formElement.addEventListener("reset", resetAllContent);
     }
 
