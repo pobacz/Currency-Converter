@@ -95,7 +95,7 @@
         preventCurrencyDuplicate(fromCurrencyElement, toCurrencyElement);
         const formElement = document.querySelector(".js-form");
         formElement.addEventListener("submit", onFormSubmit);
-        formElement.addEventListener("reset",resetAllContent);
+        resetAllContent();
     }
 
     init();
