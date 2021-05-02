@@ -45,19 +45,7 @@
     }
 
 
-    const preventCurrencyDuplicate = (basicCurrency, targetCurrency) => {
-        basicCurrency.addEventListener("input", () => {
-            if (basicCurrency.value === targetCurrency.value) {
-                targetCurrency.value = "";
-            }
-        });
-
-        targetCurrency.addEventListener("input", () => {
-            if (targetCurrency.value === basicCurrency.value) {
-                basicCurrency.value = "";
-            }
-        });
-    }
+   
 
 
     const showConvertedAmount = (amount, fromCurrency, finalOutcome, toCurrency) => {
@@ -93,9 +81,11 @@
     const init = () => {
 
         preventCurrencyDuplicate(fromCurrencyElement, toCurrencyElement);
+
+          
         const formElement = document.querySelector(".js-form");
         formElement.addEventListener("submit", onFormSubmit);
-        formElement.addEventListener("reset",resetAllContent);
+        formElement.addEventListener("reset", resetAllContent);
     }
 
     init();
