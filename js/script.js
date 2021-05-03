@@ -51,12 +51,6 @@
                 targetCurrency.value = "";
             }
         });
-
-        targetCurrency.addEventListener("input", () => {
-            if (targetCurrency.value === basicCurrency.value) {
-                basicCurrency.value = "";
-            }
-        });
     }
 
 
@@ -66,10 +60,7 @@
 
 
     const resetAllContent = () => {
-        const resetButton = document.querySelector(".js-resetButton");
-        resetButton.addEventListener("click", () => {
-            convertedAmountElement.innerText = "";
-        });
+        convertedAmountElement.innerText = "";
     }
 
 
@@ -86,16 +77,18 @@
         const finalOutcome = computeFinalOutcome(toCurrency, primaryOutcome)
 
         showConvertedAmount(amount, fromCurrency, finalOutcome, toCurrency);
-
     }
 
 
     const init = () => {
 
         preventCurrencyDuplicate(fromCurrencyElement, toCurrencyElement);
+        preventCurrencyDuplicate(toCurrencyElement, fromCurrencyElement);
+
         const formElement = document.querySelector(".js-form");
+
         formElement.addEventListener("submit", onFormSubmit);
-        resetAllContent();
+        formElement.addEventListener("reset", resetAllContent);
     }
 
     init();
