@@ -44,6 +44,7 @@
         }
     }
 
+
     const preventCurrencyDuplicate = (basicCurrency, targetCurrency) => {
         basicCurrency.addEventListener("input", () => {
             if (basicCurrency.value === targetCurrency.value) {
@@ -52,17 +53,14 @@
         });
     }
 
-    
+
     const showConvertedAmount = (amount, fromCurrency, finalOutcome, toCurrency) => {
         convertedAmountElement.innerText = `${amount.toFixed(3)} ${fromCurrency} = ${finalOutcome.toFixed(3)} ${toCurrency}`;
     }
 
 
     const resetAllContent = () => {
-        const resetButton = document.querySelector(".js-resetButton");
-        resetButton.addEventListener("click", () => {
-            convertedAmountElement.innerText = "";
-        });
+        convertedAmountElement.innerText = "";
     }
 
 
@@ -88,9 +86,8 @@
         preventCurrencyDuplicate(toCurrencyElement, fromCurrencyElement);
 
         const formElement = document.querySelector(".js-form");
-        formElement.addEventListener("submit", onFormSubmit);
 
-        // With the line below you have to click on Reset all twice
+        formElement.addEventListener("submit", onFormSubmit);
         formElement.addEventListener("reset", resetAllContent);
     }
 
